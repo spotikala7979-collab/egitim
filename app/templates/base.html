@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>{% block title %}{{ app_name }}{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg"/>
+  <link rel="icon" type="image/x-icon"  href="/static/img/favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="192x192" href="/static/img/favicon-192.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css"/>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/">
+    <div class="brand-logo">
+      <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="cl"><rect x="0"  y="0" width="11" height="22"/></clipPath>
+          <clipPath id="cr"><rect x="11" y="0" width="11" height="22"/></clipPath>
+        </defs>
+        <text x="11" y="19" text-anchor="middle" font-family="Arial Black,sans-serif"
+              font-weight="900" font-size="20" fill="#18d47b" clip-path="url(#cl)">E</text>
+        <text x="11" y="19" text-anchor="middle" font-family="Arial Black,sans-serif"
+              font-weight="900" font-size="20" fill="#4d9fff" clip-path="url(#cr)">E</text>
+      </svg>
+    </div>
+    <span class="brand-name"><em>Fero</em> <span>Eğitim</span></span>
+  </a>
+
+  <div class="topbar-right">
+    <div id="statusChip" class="chip">
+      <span class="ldot" id="liveDot"></span>
+      <span class="chip-l">Durum</span>
+      <span class="chip-v" id="statusVal">—</span>
+    </div>
+    <div class="chip">
+      <span class="chip-l">Pairs</span>
+      <span class="chip-v" id="pairsVal">—</span>
+    </div>
+    <div class="chip">
+      <span class="chip-l">Eşik</span>
+      <span class="chip-v" id="thresholdVal" style="color:var(--g)">%20</span>
+    </div>
+  </div>
+</header>
+
+<main class="page">{% block content %}{% endblock %}</main>
+<div id="copyToast" class="toast"></div>
+<script src="/static/js/shared.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

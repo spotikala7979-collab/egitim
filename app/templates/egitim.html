@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Fero Eğitim{% endblock %}
+
+{% block content %}
+
+<!-- Stats Row -->
+<div class="stats-row">
+  <div class="sbox">
+    <div class="sl">Kalıcı Panel</div>
+    <div class="sv blue" id="statPanel">—</div>
+    <div class="ss">Tüm zamanlar %20+</div>
+  </div>
+  <div class="sbox">
+    <div class="sl">Bugün</div>
+    <div class="sv green" id="statToday">—</div>
+    <div class="ss">Bugün ilk kez %20+</div>
+  </div>
+  <div class="sbox">
+    <div class="sl">Son Poll</div>
+    <div class="sv" id="statPollNew">—</div>
+    <div class="ss">Bu poll'da yeni giren</div>
+  </div>
+  <div class="sbox">
+    <div class="sl">Tarih</div>
+    <div class="sv" id="statDate" style="font-size:14px">—</div>
+    <div class="ss">Günlük rapor otomatik</div>
+  </div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <div class="tab active" data-tab="panel" onclick="switchTab('panel')">📋 Kalıcı Panel</div>
+  <div class="tab" data-tab="today"  onclick="switchTab('today')">🚀 Bugün</div>
+  <div class="tab" data-tab="reports" onclick="switchTab('reports')">📅 Günlük Raporlar</div>
+</div>
+
+<!-- ── TAB: Kalıcı Panel ─────────────────────────────────── -->
+<div id="tab-panel" class="section active">
+  <div class="perm-panel">
+    <div class="sig-head">
+      <h3>Kalıcı Panel — %<span id="thresholdLabel">20</span>+ Yükselen Coinler</h3>
+      <input id="filterInput" class="filter-input" autocomplete="off" placeholder="Coin ara…"/>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th>
+          <th>Sembol</th>
+          <th>İlk Giriş %</th>
+          <th>Max %</th>
+          <th>Giriş Fiyatı</th>
+          <th>İlk Görülme</th>
+          <th>Gün</th>
+        </tr></thead>
+        <tbody id="panelBody"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="panelEmpty">Henüz %20+ yükselen coin yok. Tarama devam ediyor…</div>
+  </div>
+</div>
+
+<!-- ── TAB: Bugün ─────────────────────────────────────────── -->
+<div id="tab-today" class="section">
+  <div class="main-layout">
+
+    <!-- Bugün sıralaması -->
+    <div class="panel">
+      <div class="ph">
+        <h3>Bugünün Liderleri</h3>
+        <span class="pill green" id="todayCountBadge">0 coin</span>
+      </div>
+      <div class="today-list" id="todayList">
+        <div class="empty-state">Bugün henüz coin girmedi…</div>
+      </div>
+    </div>
+
+    <!-- Bugünün özet tablosu -->
+    <div class="perm-panel">
+      <div class="sig-head">
+        <h3>Bugün %<span id="thresholdLabel2">20</span>+ Geçen Tüm Coinler</h3>
+        <button class="btn primary" onclick="refreshAll()">↻ Güncelle</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Sembol</th><th>Max %</th><th>Giriş Fiyatı</th><th>İlk Görülme</th>
+          </tr></thead>
+          <tbody id="todayBody"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="todayEmpty">Bugün %20+ yükselen coin bekleniyor…</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── TAB: Günlük Raporlar ──────────────────────────────── -->
+<div id="tab-reports" class="section">
+  <div class="panel">
+    <div class="ph">
+      <h3>Günlük Raporlar</h3>
+      <span class="pill">Gece yarısı otomatik</span>
+    </div>
+    <div class="reports-section" id="reportsList">
+      <div class="empty-state">Henüz tamamlanan günlük rapor yok.<br>İlk rapor bugün gece yarısında oluşturulacak.</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}<script src="/static/js/egitim.js"></script>{% endblock %}
